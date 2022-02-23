@@ -24,7 +24,7 @@ public class FastEnemy extends GameObject{
     }
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.black);
+        g.setColor(Color.green);
         g.fillRect((int)x, (int)y, 16, 16);
     }
 

@@ -3,7 +3,7 @@ package objets;
 import java.awt.*;
 
 public abstract class GameObject {
-    protected  float x;
+    protected float x;
     protected float y;
     protected ID id;
     protected float velX, velY;

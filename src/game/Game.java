@@ -31,6 +31,7 @@ public class Game extends Canvas implements Runnable {
         Health health = new Health();
         menu = new Menu();
         this.addKeyListener(new KeyInput(handler));
+        this.addMouseListener(new MouseInput(menu));
         spawn = new Spawn(handler, health);
         // handler.add(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
 

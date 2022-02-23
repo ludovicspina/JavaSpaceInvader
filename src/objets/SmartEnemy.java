@@ -26,8 +26,8 @@ public class SmartEnemy extends GameObject {
         float diffX = x - player.getX() - 16;
         float diffY = y - player.getY() - 16;
         float distance = (float) Math.sqrt((x - player.getX()) * (x - player.getX()) + (y - player.getY()) * (y - player.getY()));
-        velX = ((-1 / distance) * diffX) * 3;
-        velY = ((-1 / distance) * diffY) * 3;
+        velX = ((-1 / distance) * diffX) * 1;
+        velY = ((-1 / distance) * diffY) * 1;
         if(Game.neSorsPasSalo((int)x, 0, Game.WIDTH - 16)){
             velX *= -1;
         }
@@ -37,7 +37,7 @@ public class SmartEnemy extends GameObject {
     }
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.black);
+        g.setColor(Color.white);
         g.fillRect((int)x, (int)y, 16, 16);
     }
 

@@ -1,9 +1,21 @@
 package game;
 
+import objets.GameObject;
+import objets.ID;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public class Menu {
+
+    private Handler handler;
+
     public void tick() {}
+
     public void render(Graphics g) {
         Font fnt = new Font("arial", Font.BOLD, 50);
         Font fnt2 = new Font("arial", Font.BOLD, 30);
@@ -18,4 +30,6 @@ public class Menu {
         g.drawRect(210, 350, 200, 64);
         g.drawString("Exit", 280, 390);
     }
+
+
 }
