@@ -19,23 +19,24 @@ public class Game extends Canvas implements Runnable {
     private Boolean running = false;
     private Thread thread;
     private Spawn spawn;
+    private Menu menu;
+    public static ID gameState = ID.Menu ;
     private Random r;
 
 
     public Game() {
-        new Window(WIDTH, HEIGHT, "Space Invaders By Ryry", this);
+        new Window(WIDTH, HEIGHT, "Space Invaders BYOB", this);
         setFocusable(true);
         Handler handler = new Handler();
         Health health = new Health();
-
+        menu = new Menu();
         this.addKeyListener(new KeyInput(handler));
         spawn = new Spawn(handler, health);
-       // handler.add(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
+        // handler.add(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
 
-       // handler.add(new BasicEnemy(WIDTH / 2 - 32, HEIGHT / 10 - 32, ID.Enemy));
+        // handler.add(new BasicEnemy(WIDTH / 2 - 32, HEIGHT / 10 - 32, ID.Enemy));
         //handler.add(new FastEnemy(WIDTH / 2 - 32, HEIGHT / 10 - 32, ID.FastEnemy));
         //handler.add(new SmartEnemy(WIDTH / 2 - 32, HEIGHT / 10 - 32, ID.SmartEnemy, handler));
-
 
 
     }
@@ -87,7 +88,8 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
-        spawn.tick();
+        if (spawn != null && gameState == ID.Game)
+            spawn.tick();
     }
 
     private void render() {
@@ -97,9 +99,14 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         Graphics g = bs.getDrawGraphics();
-        g.setColor(Color.yellow);
+        g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
-        spawn.render(g);
+        if (spawn != null && gameState == ID.Game) {
+            spawn.render(g);
+        } else if (gameState == ID.Menu)
+        {
+            menu.render(g);
+        }
         g.dispose();
         bs.show();
     }

@@ -7,7 +7,7 @@ import java.io.IOException;
 public class MusiqueFond {
     public MusiqueFond() {
 
-        File s = new File("C:\\Users\\Steeve\\IdeaProjects\\spaceinvaders\\src\\kalinka.wav");
+        File s = new File("C:\\Users\\Ludovic\\Desktop\\spaceinvader\\src\\kalinka.wav");
         AudioInputStream audioIn = null;
         try {
             audioIn = AudioSystem.getAudioInputStream(s);
