@@ -3,6 +3,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import game.Handler;
+import music.MusiqueFond;
 import objets.GameObject;
 import objets.ID;
 
@@ -46,7 +47,9 @@ public class KeyInput extends KeyAdapter {
             }
         }
 
-        if (key == KeyEvent.VK_ESCAPE) System.exit(0);
+        if (key == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
     }
 
     public void keyReleased(KeyEvent e) {

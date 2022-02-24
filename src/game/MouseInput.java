@@ -1,5 +1,6 @@
 package game;
 
+import music.MusiqueFond;
 import objets.ID;
 
 import java.awt.*;
@@ -22,6 +23,12 @@ public class MouseInput extends MouseAdapter {
         } else if (mouseOver(mx, my, 210, 250, 200, 64)) {
             System.out.println("Info");
         } else if (mouseOver(mx, my, 210, 350, 200, 64)) {
+            MusiqueFond cry = new MusiqueFond("src/cry.wav");
+            try {
+                Thread.sleep(6000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
             System.exit(0);
         }
     }

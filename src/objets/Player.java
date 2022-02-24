@@ -7,7 +7,10 @@ import music.MusiqueFond;
 import objets.GameObject;
 import objets.ID;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.io.FileInputStream;
 
 public class Player extends GameObject{
     private final Handler handler;
@@ -16,6 +19,8 @@ public class Player extends GameObject{
         super(x, y, id);
         this.handler = handler;
     }
+
+
 
     @Override
     public void tick() {
@@ -30,8 +35,14 @@ public class Player extends GameObject{
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.blue);
-        g.fillOval((int)x, (int)y, 32, 32);
+        Image img = null;
+        try{
+            img = ImageIO.read(new FileInputStream("C:\\Users\\Ludovic\\Desktop\\spaceinvader\\src\\pampa.png"));
+        }
+        catch (Exception e){}
+        g.setColor(Color.black);
+        g.fillRect((int)x, (int)y, 32, 32);
+        g.drawImage(img, (int)x, (int)y, null);
     }
 
     @Override
@@ -45,7 +56,6 @@ public class Player extends GameObject{
             if(tempGo.getId() == ID.Enemy || tempGo.getId() == ID.FastEnemy || tempGo.getId() == ID.SmartEnemy){
                 if(getBounds().intersects(tempGo.getBounds())){
                     Health.HEALTH--;
-                    MusiqueFond cry = new MusiqueFond("src/cry.wav");
                 }
             }
         }
