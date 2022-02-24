@@ -3,6 +3,7 @@ package objets;
 import game.Game;
 import game.Handler;
 import game.Health;
+import music.MusiqueFond;
 import objets.GameObject;
 import objets.ID;
 
@@ -44,6 +45,7 @@ public class Player extends GameObject{
             if(tempGo.getId() == ID.Enemy || tempGo.getId() == ID.FastEnemy || tempGo.getId() == ID.SmartEnemy){
                 if(getBounds().intersects(tempGo.getBounds())){
                     Health.HEALTH--;
+                    MusiqueFond cry = new MusiqueFond("src/cry.wav");
                 }
             }
         }

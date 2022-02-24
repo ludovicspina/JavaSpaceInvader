@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jinput">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/res/jinput.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/res/jorbis-0.0.15.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/res/jogg-0.0.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

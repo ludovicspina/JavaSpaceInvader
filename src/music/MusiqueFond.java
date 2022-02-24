@@ -5,9 +5,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class MusiqueFond {
-    public MusiqueFond() {
+        public MusiqueFond(String path) {
 
-        File s = new File("C:\\Users\\Ludovic\\Desktop\\spaceinvader\\src\\kalinka.wav");
+        File s = new File(path);
         AudioInputStream audioIn = null;
         try {
             audioIn = AudioSystem.getAudioInputStream(s);

@@ -3,14 +3,8 @@ package game;
 import music.MusiqueFond;
 import objets.*;
 
-import javax.sound.sampled.*;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Random;
 
 public class Game extends Canvas implements Runnable {
@@ -60,7 +54,7 @@ public class Game extends Canvas implements Runnable {
 
     @Override
     public void run() {
-        MusiqueFond musiqueFond = new MusiqueFond();
+       // MusiqueFond musiqueFond = new MusiqueFond("src/rasputin.wav");
 
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
