@@ -21,14 +21,12 @@ public class Player extends GameObject{
     }
 
 
-
     @Override
     public void tick() {
         x += velX;
         y += velY;
         x = Game.neSorsPasDeLecran((int)this.x, 0, Game.WIDTH - 32);
         y = Game.neSorsPasDeLecran((int)this.y, 0, Game.HEIGHT - 32);
-
 
         collision();
     }

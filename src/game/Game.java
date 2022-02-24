@@ -54,7 +54,7 @@ public class Game extends Canvas implements Runnable {
 
     @Override
     public void run() {
-       // MusiqueFond musiqueFond = new MusiqueFond("src/rasputin.wav");
+        MusiqueFond musiqueFond = new MusiqueFond("src/rasputin.wav");
 
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
