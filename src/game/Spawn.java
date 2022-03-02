@@ -10,6 +10,8 @@ public class Spawn {
     private Health health;
     private int keepScore = -1;
     private Random r;
+    private boolean isBossSpawned = false;
+    private BossEnnemy bob = null;
 
     public Spawn(Handler handler, Health health) {
         r = new Random();
@@ -27,30 +29,16 @@ public class Spawn {
             keepScore = 0;
             health.setLevel(health.getLevel() + 1);
 
-            if (health.getLevel() <= 5) {
-                handler.objects.add(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.Enemy));
-            }
-            if (health.getLevel() == 6) {
-                handler.clearEnemies();
-                handler.objects.add(new SmartEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.SmartEnemy, handler));
+            if (health.getLevel() > 1) { //&& health.getLevel() < 10
+                if (!isBossSpawned) {
+                    bob = new BossEnnemy(Game.WIDTH / 2, Game.HEIGHT - 40, ID.Enemy);
+                    handler.objects.add(bob);
+                    isBossSpawned = true;
+                }
+                handler.objects.add(new ProjBossEnnemy(bob.getX(), bob.getY(), ID.Enemy));
 
             }
-            if (health.getLevel() > 6 && health.getLevel() < 15) { //&& health.getLevel() < 10
-                handler.objects.add(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.Enemy));
 
-
-            }
-            if (health.getLevel() > 15) {
-                // handler.objects.add(new FastEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.FastEnemy));
-                handler.objects.add(new SmartEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.SmartEnemy, handler));
-                handler.objects.add(new SmartEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.SmartEnemy, handler));
-                handler.objects.add(new SmartEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.SmartEnemy, handler));
-                handler.objects.add(new SmartEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.SmartEnemy, handler));
-                handler.objects.add(new SmartEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.SmartEnemy, handler));
-            }
-            /**if(health.getLevel() == 10){
-             handler.clearEnemies();
-             }**/
 
         }
         handler.tick();

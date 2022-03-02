@@ -4,6 +4,8 @@ import music.MusiqueFond;
 import objets.*;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
@@ -11,12 +13,12 @@ public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
     private Boolean running = false;
-    private Thread thread;
+    public static Thread thread;
     private Spawn spawn;
     private Menu menu;
-    public static ID gameState = ID.Menu ;
+    private Pause pose;
+    public static ID gameState = ID.Menu;
     private Random r;
-
 
     public Game() {
         new Window(WIDTH, HEIGHT, "Space Invaders BYOB", this);
@@ -27,6 +29,7 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(new KeyInput(handler));
         this.addMouseListener(new MouseInput(menu));
         spawn = new Spawn(handler, health);
+        pose = new Pause();
         // handler.add(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
 
         // handler.add(new BasicEnemy(WIDTH / 2 - 32, HEIGHT / 10 - 32, ID.Enemy));
@@ -52,6 +55,7 @@ public class Game extends Canvas implements Runnable {
         } else return var <= min;
     }
 
+
     @Override
     public void run() {
         MusiqueFond musiqueFond = new MusiqueFond("src/rasputin.wav");
@@ -62,7 +66,10 @@ public class Game extends Canvas implements Runnable {
         double delta = 0;
         long timer = System.currentTimeMillis();
         int frames = 0;
+
+
         while (running) {
+
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
@@ -70,6 +77,8 @@ public class Game extends Canvas implements Runnable {
                 tick();
                 delta--;
             }
+
+
             if (running)
                 render();
             frames++;
@@ -82,10 +91,16 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
+
     private void tick() {
         if (spawn != null && gameState == ID.Game)
             spawn.tick();
+
+        if (gameState == ID.Pause) {
+            pose.tick();
+        }
     }
+
 
     private void render() {
         BufferStrategy bs = this.getBufferStrategy();
@@ -98,9 +113,10 @@ public class Game extends Canvas implements Runnable {
         g.fillRect(0, 0, WIDTH, HEIGHT);
         if (spawn != null && gameState == ID.Game) {
             spawn.render(g);
-        } else if (gameState == ID.Menu)
-        {
+        } else if (gameState == ID.Menu) {
             menu.render(g);
+        } else if (gameState == ID.Pause) {
+            pose.render(g);
         }
         g.dispose();
         bs.show();

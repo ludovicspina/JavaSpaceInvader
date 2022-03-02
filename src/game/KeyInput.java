@@ -1,6 +1,8 @@
 package game;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferStrategy;
 
 import game.Handler;
 import music.MusiqueFond;
@@ -12,6 +14,9 @@ import objets.ID;
 public class KeyInput extends KeyAdapter {
     private final Handler handler;
     private final boolean[] keyDown = new boolean[4];
+    private boolean isPaused = false;
+    private boolean isPauseRendered = false;
+    private Pause pause;
 
     public KeyInput(Handler handler) {
         this.handler = handler;
@@ -50,6 +55,26 @@ public class KeyInput extends KeyAdapter {
         if (key == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         }
+
+        if (key == KeyEvent.VK_P) {
+            pause = new Pause();
+            if (!isPaused) {
+                if (!isPauseRendered) {
+
+                }
+                isPaused = true;
+                System.out.println("pose");
+                Game.gameState = ID.Pause;
+                // Game.thread.suspend();
+            } else {
+
+                isPaused = false;
+                Game.gameState = ID.Game;
+            }
+
+
+        }
+
     }
 
     public void keyReleased(KeyEvent e) {
