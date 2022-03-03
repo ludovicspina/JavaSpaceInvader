@@ -3,6 +3,7 @@ package game;
 import objets.GameObject;
 import objets.ID;
 
+import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -28,7 +29,9 @@ public class Menu {
         g.drawRect(210, 250, 200, 64);
         g.drawString("Help", 280, 290);
         g.drawRect(210, 350, 200, 64);
-        g.drawString("Exit", 280, 390);
+        g.drawString("Difficulty", 280, 390);
+        g.drawRect(210, 450, 200, 64);
+        g.drawString("Exit", 280, 490);
     }
 
 

@@ -17,6 +17,9 @@ public class Game extends Canvas implements Runnable {
     private Spawn spawn;
     private Menu menu;
     private Pause pose;
+    private Help help;
+    private Over over;
+    private Difficulty difficulty;
     public static ID gameState = ID.Menu;
     private Random r;
 
@@ -30,13 +33,9 @@ public class Game extends Canvas implements Runnable {
         this.addMouseListener(new MouseInput(menu));
         spawn = new Spawn(handler, health);
         pose = new Pause();
-        // handler.add(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
-
-        // handler.add(new BasicEnemy(WIDTH / 2 - 32, HEIGHT / 10 - 32, ID.Enemy));
-        //handler.add(new FastEnemy(WIDTH / 2 - 32, HEIGHT / 10 - 32, ID.FastEnemy));
-        //handler.add(new SmartEnemy(WIDTH / 2 - 32, HEIGHT / 10 - 32, ID.SmartEnemy, handler));
-
-
+        help = new Help();
+        over = new Over(health);
+        difficulty = new Difficulty();
     }
 
     public static int neSorsPasDeLecran(int var, int min, int max) {
@@ -99,6 +98,18 @@ public class Game extends Canvas implements Runnable {
         if (gameState == ID.Pause) {
             pose.tick();
         }
+
+        if (gameState == ID.Help) {
+            help.tick();
+        }
+
+        if (gameState == ID.Over) {
+            over.tick();
+        }
+
+        if (gameState == ID.Difficulty) {
+            difficulty.tick();
+        }
     }
 
 
@@ -117,6 +128,12 @@ public class Game extends Canvas implements Runnable {
             menu.render(g);
         } else if (gameState == ID.Pause) {
             pose.render(g);
+        } else if (gameState == ID.Help) {
+            help.render(g);
+        }else if (gameState == ID.Over) {
+            over.render(g);
+        }else if (gameState == ID.Difficulty) {
+            difficulty.render(g);
         }
         g.dispose();
         bs.show();

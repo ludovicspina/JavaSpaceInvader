@@ -18,18 +18,44 @@ public class MouseInput extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
         int mx = e.getX();
         int my = e.getY();
-        if (mouseOver(mx, my, 210, 150, 200, 64)) {
-            Game.gameState = ID.Game;
-        } else if (mouseOver(mx, my, 210, 250, 200, 64)) {
-            System.out.println("Info");
-        } else if (mouseOver(mx, my, 210, 350, 200, 64)) {
-            MusiqueFond cry = new MusiqueFond("src/cry.wav");
-            try {
-                Thread.sleep(6000);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
+        if (Game.gameState == ID.Menu) {
+            if (mouseOver(mx, my, 210, 150, 200, 64)) {
+                Game.gameState = ID.Game;
+            } else if (mouseOver(mx, my, 210, 250, 200, 64)) {
+                Game.gameState = ID.Help;
+            } else if (mouseOver(mx, my, 210, 350, 200, 64)) {
+                Game.gameState = ID.Difficulty;
+            } else if (mouseOver(mx, my, 210, 450, 200, 64)) {
+                MusiqueFond cry = new MusiqueFond("src/cry.wav");
+                try {
+                    Thread.sleep(6000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                System.exit(0);
             }
-            System.exit(0);
+        } else if (Game.gameState == ID.Help) {
+            if (mouseOver(mx, my, 210, 150, 200, 64)) {
+                if (KeyInput.isPaused) {
+                    Game.gameState = ID.Game;
+                } else {
+                    Game.gameState = ID.Menu;
+                }
+
+            }
+        } else if (Game.gameState == ID.Pause) {
+            if (mouseOver(mx, my, 210, 150, 200, 64)) {
+                Game.gameState = ID.Game;
+                KeyInput.isPaused = false;
+            }
+        } else if (Game.gameState == ID.Difficulty) {
+            if (mouseOver(mx, my, 210, 150, 200, 64)) {
+                Spawn.difficultyLevel = 1;
+                Game.gameState = ID.Menu;
+            } else if (mouseOver(mx, my, 210, 250, 200, 64)) {
+                Spawn.difficultyLevel = 2;
+                Game.gameState = ID.Menu;
+            }
         }
     }
 

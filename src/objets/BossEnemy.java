@@ -4,8 +4,8 @@ import game.Game;
 
 import java.awt.*;
 
-public class BossEnnemy extends GameObject {
-    public BossEnnemy(float x, float y, ID id){
+public class BossEnemy extends GameObject {
+    public BossEnemy(float x, float y, ID id){
         super(x, y, id);
         velX = 3;
         velY = 0;

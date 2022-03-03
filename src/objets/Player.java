@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.FileInputStream;
 
-public class Player extends GameObject{
+public class Player extends GameObject {
     private final Handler handler;
 
     public Player(float x, float y, ID id, Handler handler) {
@@ -25,38 +25,42 @@ public class Player extends GameObject{
     public void tick() {
         x += velX;
         y += velY;
-        x = Game.neSorsPasDeLecran((int)this.x, 0, Game.WIDTH - 32);
-        y = Game.neSorsPasDeLecran((int)this.y, 0, Game.HEIGHT - 32);
-
+        x = Game.neSorsPasDeLecran((int) this.x, 0, Game.WIDTH - 32);
+        y = Game.neSorsPasDeLecran((int) this.y, 0, Game.HEIGHT - 32);
         collision();
     }
 
     @Override
     public void render(Graphics g) {
         Image img = null;
-        try{
+        try {
             img = ImageIO.read(new FileInputStream("C:\\Users\\Ludovic\\Desktop\\spaceinvader\\src\\pampa.png"));
+        } catch (Exception e) {
         }
-        catch (Exception e){}
         g.setColor(Color.black);
-        g.fillRect((int)x, (int)y, 32, 32);
-        g.drawImage(img, (int)x, (int)y, null);
+        g.fillRect((int) x, (int) y, 32, 32);
+        g.drawImage(img, (int) x, (int) y, null);
     }
 
     @Override
-    public Rectangle getBounds(){
-        return new Rectangle((int)x, (int)y, 32, 32);
+    public Rectangle getBounds() {
+        return new Rectangle((int) x, (int) y, 32, 32);
     }
 
-    public void collision(){
-        for(int i = 0; i < handler.objects.size(); i++){
+    public void collision() {
+        for (int i = 0; i < handler.objects.size(); i++) {
             GameObject tempGo = handler.objects.get(i);
-            if(tempGo.getId() == ID.Enemy || tempGo.getId() == ID.FastEnemy || tempGo.getId() == ID.SmartEnemy){
-                if(getBounds().intersects(tempGo.getBounds())){
-                    Health.HEALTH--;
+            if (tempGo.getId() == ID.Enemy || tempGo.getId() == ID.FastEnemy || tempGo.getId() == ID.SmartEnemy || tempGo.getId() == ID.ProjBossEnemy || tempGo.getId() == ID.BossEnemy) {
+                if (getBounds().intersects(tempGo.getBounds())) {
+                    if (tempGo.getId() == ID.BossEnemy) {
+                        Health.HEALTH = 0;
+                    } else {
+                        Health.HEALTH--;
+                    }
                 }
             }
         }
     }
+
 
 }

@@ -20,11 +20,11 @@ public class ProjBossEnnemy extends GameObject {
     @Override
     public void render(Graphics g) {
         g.setColor(Color.pink);
-        g.fillRect((int) x, (int) y, 6, 6);
+        g.fillRect((int) x, (int) y, 10, 10);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int) x, (int) y, 16, 16);
+        return new Rectangle((int) x, (int) y, 10, 10);
     }
 }

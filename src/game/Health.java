@@ -24,7 +24,7 @@ public class Health {
     }
 
     private int score = 0;
-    private int level = 0;
+    public int level = 0;
     public void tick(){
 
         HEALTH = Game.neSorsPasDeLecran(HEALTH, 0, 100);
