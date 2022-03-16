@@ -8,10 +8,14 @@ public class Over {
 
     private Handler handler;
     private static int[] scoreList;
+    private static String[] pseudoList;
     private static Health health;
-    private static int score1;
-    private static int score2;
-    private static int score3;
+    public static int score1;
+    public static int score2;
+    public static int score3;
+    public static String pseudo1;
+    public static String pseudo2;
+    public static String pseudo3;
 
     public Over(Health health) {
         Over.health = health;
@@ -30,6 +34,9 @@ public class Over {
         g.drawString(Integer.toString(score1), 260, 250);
         g.drawString(Integer.toString(score2), 260, 300);
         g.drawString(Integer.toString(score3), 260, 350);
+        g.drawString(pseudo1, 340, 250);
+        g.drawString(pseudo2, 340, 300);
+        g.drawString(pseudo3, 340, 350);
     }
 
     public static void read() {
@@ -72,6 +79,61 @@ public class Over {
             System.out.println(e);
         }
 
+    }
+
+    public static void pseudoRead() {
+        try {
+            BufferedReader csvReader = new BufferedReader(new FileReader("pseudo.csv"));
+            String row;
+            String[] lesPseudos = new String[0];
+            while ((row = csvReader.readLine()) != null) {
+                String[] data = row.split(",");
+                lesPseudos = new String[data.length];
+                for (int i = 0; i < data.length; i++) {
+                    lesPseudos[i] = data[i];
+                }
+            }
+            csvReader.close();
+            pseudoList = lesPseudos;
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public static void pseudoSave() {
+        try {
+            pseudoRead();
+            String[] lesPseudos = pseudoList;
+            lesPseudos[2] = lesPseudos[1];
+            lesPseudos[1] = lesPseudos[0];
+            lesPseudos[0] = Menu.pseudo;
+            FileWriter csvWriter = new FileWriter("pseudo.csv");
+            for (int i = 0; i < 3; i++) {
+                csvWriter.append(String.valueOf(lesPseudos[i])).append(",");
+            }
+            pseudo1 = lesPseudos[0];
+            pseudo2 = lesPseudos[1];
+            pseudo3 = lesPseudos[2];
+            csvWriter.flush();
+            csvWriter.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void menuSave() {
+        pseudoRead();
+        String[] lesPseudos = pseudoList;
+        pseudo1 = lesPseudos[0];
+        pseudo2 = lesPseudos[1];
+        pseudo3 = lesPseudos[2];
+
+        read();
+        int[] lesScores = scoreList;
+        score1 = lesScores[0];
+        score2 = lesScores[1];
+        score3 = lesScores[2];
     }
 
 

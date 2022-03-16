@@ -3,12 +3,8 @@ package objets;
 import game.Game;
 import game.Handler;
 import game.Health;
-import music.MusiqueFond;
-import objets.GameObject;
-import objets.ID;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.io.FileInputStream;
 
@@ -34,8 +30,8 @@ public class Player extends GameObject {
     public void render(Graphics g) {
         Image img = null;
         try {
-            img = ImageIO.read(new FileInputStream("C:\\Users\\Ludovic\\Desktop\\spaceinvader\\src\\pampa.png"));
-        } catch (Exception e) {
+            img = ImageIO.read(new FileInputStream("pampa.png"));
+        } catch (Exception ignored) {
         }
         g.setColor(Color.black);
         g.fillRect((int) x, (int) y, 32, 32);

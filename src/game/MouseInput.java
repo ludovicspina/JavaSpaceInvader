@@ -6,6 +6,7 @@ import objets.ID;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 
 
 public class MouseInput extends MouseAdapter {
@@ -19,13 +20,16 @@ public class MouseInput extends MouseAdapter {
         int mx = e.getX();
         int my = e.getY();
         if (Game.gameState == ID.Menu) {
-            if (mouseOver(mx, my, 210, 150, 200, 64)) {
+            if (mouseOver(mx, my, 440, 110, 200, 64)) {
                 Game.gameState = ID.Game;
-            } else if (mouseOver(mx, my, 210, 250, 200, 64)) {
+                if (Objects.equals(game.Menu.pseudo, "")) {
+                    game.Menu.pseudo = "tapamitonpseudo";
+                }
+            } else if (mouseOver(mx, my, 440, 210, 200, 64)) {
                 Game.gameState = ID.Help;
-            } else if (mouseOver(mx, my, 210, 350, 200, 64)) {
+            } else if (mouseOver(mx, my, 440, 310, 200, 64)) {
                 Game.gameState = ID.Difficulty;
-            } else if (mouseOver(mx, my, 210, 450, 200, 64)) {
+            } else if (mouseOver(mx, my, 440, 410, 200, 64)) {
                 MusiqueFond cry = new MusiqueFond("src/cry.wav");
                 try {
                     Thread.sleep(6000);

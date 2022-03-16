@@ -76,5 +76,19 @@ public class KeyInput extends KeyAdapter {
                 if (!keyDown[2] && !keyDown[3]) tempObject.setVelX(0);
             }
         }
+    if (Game.gameState == ID.Menu) {
+        if(key != KeyEvent.VK_BACK_SPACE){
+            Menu.pseudo += KeyEvent.getKeyText(key);
+        }
+        else {
+            int dernier = Menu.pseudo.length();
+            StringBuilder niou = new StringBuilder();
+            for (int i = 0; i < dernier-1; i++){
+                niou.append(Menu.pseudo.charAt(i));
+            }
+            Menu.pseudo = niou.toString();
+        }
     }
+    }
+
 }

@@ -32,6 +32,7 @@ public class Spawn {
         if (Health.HEALTH <= 0) {
             Game.gameState = ID.Over;
             Over.save();
+            Over.pseudoSave();
         }
 
         if (keepScore >= 100) {
@@ -45,7 +46,15 @@ public class Spawn {
             }
 
             if (difficultyLevel == 2) {
-                if (health.getLevel() > 1) { //&& health.getLevel() < 10
+                if (health.getLevel() > 1) {
+                    handler.add(new SmartEnemy(300, 300, ID.SmartEnemy, handler));
+                }
+
+                if (health.getLevel() > 1) {
+                    handler.add(new SmartEnemy(50, 50, ID.SmartEnemy, handler));
+                }
+
+                if (health.getLevel() >= 10) {
                     if (!isBossSpawned) {
                         bob = new BossEnemy(Game.WIDTH / 2, Game.HEIGHT - 40, ID.BossEnemy);
                         handler.objects.add(bob);
