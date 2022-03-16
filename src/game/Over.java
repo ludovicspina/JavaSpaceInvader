@@ -29,14 +29,21 @@ public class Over {
         Font fnt2 = new Font("arial", Font.BOLD, 30);
         g.setFont(fnt);
         g.setColor(Color.white);
-        g.drawString("CHEH", Game.WIDTH / 4, Game.HEIGHT / 3);
+        g.drawString("Perdou", 140, Game.HEIGHT / 3);
         g.setFont(fnt2);
-        g.drawString(Integer.toString(score1), 260, 250);
-        g.drawString(Integer.toString(score2), 260, 300);
-        g.drawString(Integer.toString(score3), 260, 350);
-        g.drawString(pseudo1, 340, 250);
-        g.drawString(pseudo2, 340, 300);
-        g.drawString(pseudo3, 340, 350);
+        g.drawString(Integer.toString(score1), 160, 250);
+        g.drawString(Integer.toString(score2), 160, 300);
+        g.drawString(Integer.toString(score3), 160, 350);
+        g.drawString(pseudo1, 230, 250);
+        g.drawString(pseudo2, 230, 300);
+        g.drawString(pseudo3, 230, 350);
+        if (Spawn.difficultyLevel == 1) {
+            g.setColor(Color.blue);
+        } else {
+            g.setColor(Color.red);
+        }
+        g.drawRect(1, 1, Game.WIDTH - 2, Game.HEIGHT - 2);
+        g.setColor(Color.white);
     }
 
     public static void read() {

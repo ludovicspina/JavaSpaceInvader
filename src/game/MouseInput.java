@@ -20,16 +20,16 @@ public class MouseInput extends MouseAdapter {
         int mx = e.getX();
         int my = e.getY();
         if (Game.gameState == ID.Menu) {
-            if (mouseOver(mx, my, 440, 110, 200, 64)) {
+            if (mouseOver(mx, my, 420, 110, 200, 64)) {
                 Game.gameState = ID.Game;
                 if (Objects.equals(game.Menu.pseudo, "")) {
-                    game.Menu.pseudo = "tapamitonpseudo";
+                    game.Menu.pseudo = "AAA";
                 }
-            } else if (mouseOver(mx, my, 440, 210, 200, 64)) {
+            } else if (mouseOver(mx, my, 420, 210, 200, 64)) {
                 Game.gameState = ID.Help;
-            } else if (mouseOver(mx, my, 440, 310, 200, 64)) {
+            } else if (mouseOver(mx, my, 420, 310, 200, 64)) {
                 Game.gameState = ID.Difficulty;
-            } else if (mouseOver(mx, my, 440, 410, 200, 64)) {
+            } else if (mouseOver(mx, my, 10, 404, 200, 64)) {
                 MusiqueFond cry = new MusiqueFond("src/cry.wav");
                 try {
                     Thread.sleep(6000);

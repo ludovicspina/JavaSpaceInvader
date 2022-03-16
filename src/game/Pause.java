@@ -17,6 +17,13 @@ public class Pause {
         g.setFont(fnt2);
         g.drawRect(210, 150, 200, 64);
         g.drawString("Retour", 260, 190);
+        if (Spawn.difficultyLevel == 1) {
+            g.setColor(Color.blue);
+        } else {
+            g.setColor(Color.red);
+        }
+        g.drawRect(1, 1, Game.WIDTH - 2, Game.HEIGHT - 2);
+        g.setColor(Color.white);
 
     }
 }

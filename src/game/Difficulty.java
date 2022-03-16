@@ -13,8 +13,15 @@ public class Difficulty {
         g.setFont(fnt);
         g.setColor(Color.white);
         g.drawRect(210, 150, 200, 64);
-        g.drawString("Facile", 280, 190);
+        g.drawString("Facile", 270, 190);
         g.drawRect(210, 250, 200, 64);
-        g.drawString("Difficile", 280, 290);
+        g.drawString("Difficile", 260, 290);
+        if (Spawn.difficultyLevel == 1) {
+            g.setColor(Color.blue);
+        } else {
+            g.setColor(Color.red);
+        }
+        g.drawRect(1, 1, Game.WIDTH - 2, Game.HEIGHT - 2);
+        g.setColor(Color.white);
     }
 }

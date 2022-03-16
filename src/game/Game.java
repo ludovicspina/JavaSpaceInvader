@@ -120,6 +120,7 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         Graphics g = bs.getDrawGraphics();
+
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
         if (spawn != null && gameState == ID.Game) {
@@ -135,8 +136,18 @@ public class Game extends Canvas implements Runnable {
         }else if (gameState == ID.Difficulty) {
             difficulty.render(g);
         }
+
+        if (Spawn.difficultyLevel == 1) {
+            g.setColor(Color.blue);
+        } else {
+            g.setColor(Color.red);
+        }
+        g.drawRect(1, 1, Game.WIDTH - 2, Game.HEIGHT - 2);
+        g.setColor(Color.white);
+
         g.dispose();
         bs.show();
+
     }
 
     public synchronized void start() {
