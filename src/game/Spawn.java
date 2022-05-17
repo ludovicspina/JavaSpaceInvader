@@ -29,8 +29,11 @@ public class Spawn {
         }
         keepScore++;
 
-
-
+        if (Health.HEALTH <= 0) {
+            Game.gameState = ID.Over;
+            Over.save();
+            Over.pseudoSave();
+        }
 
         // basic enemy : handler.add(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.Enemy));
         // smart enemy : handler.add(new SmartEnemy(50, 50, ID.SmartEnemy, handler));
