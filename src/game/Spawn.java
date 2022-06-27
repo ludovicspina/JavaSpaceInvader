@@ -1,5 +1,8 @@
 package game;
 
+import builder.builders.BasicEnemyBuilder;
+import builder.builders.FastEnemyBuilder;
+import builder.director.Director;
 import objets.*;
 
 import java.awt.*;
@@ -14,12 +17,21 @@ public class Spawn {
     private boolean isBossSpawned = false;
     private BossEnemy bob = null;
     private BossEnemy alfred = null;
+
+    Director director;
+    BasicEnemyBuilder basicEnemyBuilder;
+    FastEnemyBuilder fastEnemyBuilder;
     public static int difficultyLevel = 1;
 
     public Spawn(Handler handler, Health health) {
         r = new Random();
         this.handler = handler;
         this.health = health;
+        director = new Director();
+        basicEnemyBuilder = new BasicEnemyBuilder();
+        fastEnemyBuilder = new FastEnemyBuilder();
+        director.constructBasicEnemy(basicEnemyBuilder);
+        director.constructFastEnemy(fastEnemyBuilder);
     }
 
     public void tick() {
@@ -45,7 +57,8 @@ public class Spawn {
 
             if (difficultyLevel == 1) {
                 if (health.getLevel() >= 1) {
-                    handler.add(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.Enemy));
+                    // handler.add(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.Enemy));
+                    handler.objects.add(basicEnemyBuilder.getResult());
                 }
 
                 if (health.getLevel() > 5) {
@@ -59,14 +72,17 @@ public class Spawn {
                         isBossSpawned = true;
                     }
                     handler.add(new ProjBossEnnemy(bob.getX(), bob.getY(), ID.ProjBossEnemy));
+                    handler.add(new ProjBossEnnemy(bob.getX(), bob.getY(), ID.ProjBossEnemy));
                 }
 
             }
 
             if (difficultyLevel == 2) {
                 if (health.getLevel() >= 1) {
-                    handler.add(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.Enemy));
-                    handler.add(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.Enemy));
+                    // handler.add(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.Enemy));
+                    // handler.add(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.Enemy));
+                    handler.objects.add(basicEnemyBuilder.getResult());
+                    handler.objects.add(fastEnemyBuilder.getResult());
                 }
 
                 if (health.getLevel() > 5) {
