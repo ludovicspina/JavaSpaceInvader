@@ -1,6 +1,7 @@
 package builder.builders;
 
 import builder.enemies.BasicEnemy;
+import builder.enemies.FastEnemy;
 import game.Game;
 import objets.GameObject;
 import objets.ID;
@@ -19,7 +20,7 @@ public class FastEnemyBuilder implements Builder {
     @Override
     public void setVelY(float y) { this.y = y; }
 
-    public BasicEnemy getResult() {
-        return new builder.enemies.BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.Enemy, x, y);
+    public FastEnemy getResult() {
+        return new builder.enemies.FastEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), ID.FastEnemy, x, y);
     }
 }
