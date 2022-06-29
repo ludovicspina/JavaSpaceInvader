@@ -1,14 +1,14 @@
 package builder.builders;
 
 import builder.enemies.BasicEnemy;
+import builder.enemies.BossEnemy;
+import builder.enemies.FastEnemy;
 import game.Game;
-import objets.GameObject;
 import objets.ID;
 
-import java.awt.*;
 import java.util.Random;
 
-public class BasicEnemyBuilder implements Builder {
+public class BossEnemyBuilder implements Builder{
     private float x;
     private float y;
     private float velocityX;
@@ -43,7 +43,7 @@ public class BasicEnemyBuilder implements Builder {
         return velocityY;
     }
 
-    public BasicEnemy getResult() {
-        return new builder.enemies.BasicEnemy(this.getX(), this.getY(), ID.Enemy, this.getVelocityX(), this.getVelocityY());
+    public BossEnemy getResult() {
+        return new builder.enemies.BossEnemy(this.getX(), this.getY(), ID.BossEnemy, this.getVelocityX(), this.getVelocityY());
     }
 }

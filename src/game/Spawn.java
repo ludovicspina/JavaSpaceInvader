@@ -1,6 +1,7 @@
 package game;
 
 import builder.builders.BasicEnemyBuilder;
+import builder.builders.BossEnemyBuilder;
 import builder.builders.FastEnemyBuilder;
 import builder.director.Director;
 import objets.*;
@@ -21,6 +22,8 @@ public class Spawn {
     Director director;
     BasicEnemyBuilder basicEnemyBuilder;
     FastEnemyBuilder fastEnemyBuilder;
+    BossEnemyBuilder bossEnemyBuilder;
+    builder.enemies.BossEnemy bo;
     public static int difficultyLevel = 1;
 
     public Spawn(Handler handler, Health health) {
@@ -30,8 +33,10 @@ public class Spawn {
         director = new Director();
         basicEnemyBuilder = new BasicEnemyBuilder();
         fastEnemyBuilder = new FastEnemyBuilder();
+        bossEnemyBuilder = new BossEnemyBuilder();
         director.constructBasicEnemy(basicEnemyBuilder);
         director.constructFastEnemy(fastEnemyBuilder);
+        director.constructBossEnemy(bossEnemyBuilder);
     }
 
     public void tick() {
@@ -67,12 +72,11 @@ public class Spawn {
 
                 if (health.getLevel() >= 10) {
                     if (!isBossSpawned) {
-                        bob = new BossEnemy(Game.WIDTH / 2, Game.HEIGHT - 40, ID.BossEnemy);
-                        handler.objects.add(bob);
+                        bo = bossEnemyBuilder.getResult();
+                        handler.objects.add(bo);
                         isBossSpawned = true;
                     }
-                    handler.add(new ProjBossEnnemy(bob.getX(), bob.getY(), ID.ProjBossEnemy));
-                    handler.add(new ProjBossEnnemy(bob.getX(), bob.getY(), ID.ProjBossEnemy));
+                    handler.add(new builder.enemies.BasicEnemy(bo.getX(), bo.getY(), ID.Enemy, 5, 5));
                 }
 
             }
@@ -92,11 +96,11 @@ public class Spawn {
 
                 if (health.getLevel() >= 10) {
                     if (!isBossSpawned) {
-                        bob = new BossEnemy(Game.WIDTH / 2, Game.HEIGHT - 40, ID.BossEnemy);
-                        handler.objects.add(bob);
+                        bo = bossEnemyBuilder.getResult();
+                        handler.objects.add(bo);
                         isBossSpawned = true;
                     }
-                    handler.add(new ProjBossEnnemy(bob.getX(), bob.getY(), ID.ProjBossEnemy));
+                    handler.add(new builder.enemies.BasicEnemy(bo.getX(), bo.getY(), ID.Enemy, 1, 5));
                 }
             }
 
