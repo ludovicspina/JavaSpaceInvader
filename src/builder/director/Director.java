@@ -10,13 +10,13 @@ public class Director {
         builder.setVelX(3);
         builder.setVelY(3);
         builder.setX(new Random().nextInt(Game.WIDTH - 16));
-        builder.setY(new Random().nextInt(Game.WIDTH - 16));
+        builder.setY(new Random().nextInt(Game.HEIGHT - 16));
     }
     public void constructFastEnemy(Builder builder){
         builder.setVelX(10);
         builder.setVelY(10);
         builder.setX(new Random().nextInt(Game.WIDTH - 16));
-        builder.setY(new Random().nextInt(Game.WIDTH - 16));
+        builder.setY(new Random().nextInt(Game.HEIGHT - 16));
     }
     public void constructBossEnemy(Builder builder){
         builder.setVelX(2);
